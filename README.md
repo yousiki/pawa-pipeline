@@ -78,7 +78,7 @@ llvmpipe), which is correct but much slower. At scale, capture and rendering run
 on separate CPU and GPU pools; see [`docs/distributed.md`](docs/distributed.md).
 
 Build and test the workspace on the host (the nightly toolchain is pinned in `rust-toolchain.toml`;
-building also needs a C compiler and CMake):
+building also needs a C compiler and CMake, and the tests need `ffmpeg`):
 
 ```bash
 just test
