@@ -108,7 +108,7 @@ kbd { background: #2c2c2c; border: 1px solid #444; border-radius: 4px; padding: 
 const LS = localStorage;
 const params = new URLSearchParams(location.search);
 const cfg = {
-  repo: params.get("repo") || LS.getItem("hf_repo") || "",
+  repo: params.get("repo") || LS.getItem("hf_repo") || "YOUSIKI/pawa-dataset",
 };
 if (params.get("repo")) LS.setItem("hf_repo", cfg.repo);
 if (params.get("revision") && (!location.hash || location.hash === "#/")) {

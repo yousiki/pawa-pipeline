@@ -25,7 +25,7 @@ The token is stored only in the browser's localStorage and is only ever sent to
 You can also link straight to a repo and branch:
 
 ```
-http://localhost:8000/?repo=owner/name&revision=main
+http://localhost:8000/?repo=YOUSIKI/pawa-dataset&revision=main
 ```
 
 - **Episode index**: filter by scenario, player count N, QC verdict and your own marks; sort by
