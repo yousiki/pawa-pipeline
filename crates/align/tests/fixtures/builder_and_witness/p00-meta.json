@@ -1,0 +1,342 @@
+{
+  "actions": [
+    {
+      "action_type": "look",
+      "server_tick": 0,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 0,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 75,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 75,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 76,
+      "type": "control.look"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 76,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 99,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 137,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 179,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 219,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 253,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 283,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 325,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 366,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 389,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 389,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 474,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 474,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 542,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 542,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 582,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 582,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 845,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 845,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 922,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 922,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1001,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1001,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1068,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1068,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1108,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1108,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1376,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1376,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1449,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1449,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1528,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1528,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1585,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1585,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1624,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1624,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1899,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1899,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2042,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2042,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2121,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2121,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2164,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2164,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2204,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2204,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2480,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2480,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2601,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2601,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2681,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2681,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2732,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2732,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2772,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2772,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 3015,
+      "type": "control.move"
+    }
+  ],
+  "azalea_version": "0.14.0+mc1.21.8",
+  "dense_frames": 3046,
+  "duration_met": true,
+  "end_tick_offset": 3046,
+  "episode_actual_duration_ms": 152266,
+  "episode_id": "corpus-const-builder_and_witness",
+  "episode_target_duration_ms": 150000,
+  "error_code": null,
+  "go_tick_base_client": 296,
+  "go_world_age": 304,
+  "last_frame_player_time_ms": 152258,
+  "last_frame_world_age_tick": 3350,
+  "place_tick_offset": 76,
+  "place_world_age_tick": 380,
+  "player_id": "player-0",
+  "runtime_family": "azalea",
+  "scenario": "script:construction/builder_and_witness",
+  "scenario_requested": "script:construction/builder_and_witness",
+  "scenario_seed": 7003,
+  "status": "ok",
+  "step_errors": [],
+  "username": "CapBot0",
+  "world_age_at_end": 3350
+}

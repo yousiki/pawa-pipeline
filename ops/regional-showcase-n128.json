@@ -1,0 +1,69 @@
+{
+  "run_id": "regional-showcase-n128-20260918",
+  "capture_cpus": 16,
+  "episodes": [
+    {
+      "episode_id": "regional-n128",
+      "player_count": 128,
+      "shards": 1,
+      "episode_duration_sec": 60,
+      "world": {
+        "seed": "4103"
+      },
+      "scenario": {
+        "name": "regional_capacity_traffic",
+        "seed": 2141,
+        "scenery": "none"
+      },
+      "swarm": {
+        "spread_distance": 4,
+        "spread_range": 55
+      },
+      "player_behavior": {
+        "move_no_progress_ms": 2200,
+        "operation_pause_ms": 100
+      }
+    }
+  ],
+  "render": {
+    "projections": [
+      {
+        "name": "default",
+        "method": "DEFAULT",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "name": "equirect",
+        "method": "EQUIRECTANGULAR",
+        "width": 2048,
+        "height": 1024
+      }
+    ],
+    "fps": 20,
+    "pov_sample": 1,
+    "depth": false,
+    "encoder": "libx264",
+    "preset": "fast",
+    "crf": 18,
+    "threads_per_render": 4,
+    "timeout_sec": {
+      "default": 1800,
+      "equirect": 2400
+    },
+    "observers": [
+      {
+        "name": "obs_regions",
+        "mode": "crowd_orbit",
+        "bearing_deg": 135,
+        "sweep_deg": 35,
+        "height": 65,
+        "min_distance": 65,
+        "max_distance": 110,
+        "radius_scale": 1.25,
+        "margin": 8,
+        "smooth_frames": 41
+      }
+    ]
+  }
+}

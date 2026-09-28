@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "rmdriver",
+  "version": "1.0.0",
+  "name": "ReplayMod Unattended Render Driver",
+  "description": "Drives unattended ReplayMod renders for the PAWA data pipeline: reads a JSON render spec, opens the replay, and renders each requested view through stock, unmodified ReplayMod via reflection.",
+  "license": "Apache-2.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "moe.siki.pawa.rmdriver.ReplayModDriver"
+    ]
+  },
+  "mixins": [
+    "mixins.rmdriver.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=26.2",
+    "java": ">=21",
+    "replaymod": "*",
+    "fabric-api": "*"
+  }
+}

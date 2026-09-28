@@ -1,0 +1,78 @@
+{
+	"run_id": "observer-smoke",
+	"capture_cpus": 16,
+	"episodes": [
+		{
+			"episode_id": "obs-crowded_interaction-8p",
+			"player_count": 8,
+			"shards": 1,
+			"episode_duration_sec": 180,
+			"scenario": {
+				"name": "crowded_interaction",
+				"seed": 2141,
+				"scenery": "none"
+			},
+			"world": {
+				"seed": "4103"
+			}
+		},
+		{
+			"episode_id": "obs-group_orbit-8p",
+			"player_count": 8,
+			"shards": 1,
+			"episode_duration_sec": 180,
+			"scenario": {
+				"name": "group_orbit",
+				"seed": 2151,
+				"scenery": "none"
+			},
+			"world": {
+				"seed": "4103"
+			}
+		}
+	],
+	"render": {
+		"projections": [
+			{
+				"name": "default",
+				"method": "DEFAULT",
+				"width": 640,
+				"height": 360
+			},
+			{
+				"name": "equirect",
+				"method": "EQUIRECTANGULAR",
+				"width": 1024,
+				"height": 512
+			}
+		],
+		"encoder": "libx264",
+		"preset": "veryfast",
+		"crf": 20,
+		"fps": 20,
+		"threads_per_render": 8,
+		"timeout_sec": {
+			"default": 6000,
+			"equirect": 21600
+		},
+		"observers": [
+			{
+				"name": "obs00",
+				"mode": "crowd_static",
+				"bearing_deg": 135.0,
+				"height": 28.0,
+				"min_distance": 24.0,
+				"max_distance": 72.0
+			},
+			{
+				"name": "obs01",
+				"mode": "crowd_orbit",
+				"bearing_deg": 135.0,
+				"sweep_deg": 120.0,
+				"height": 28.0,
+				"min_distance": 24.0,
+				"max_distance": 72.0
+			}
+		]
+	}
+}

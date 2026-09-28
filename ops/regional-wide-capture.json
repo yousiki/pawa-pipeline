@@ -1,0 +1,6 @@
+{
+  "view_distance": 24,
+  "simulation_distance": 8,
+  "server_xmx": "16G",
+  "episode_timeout_margin_sec": 240.0
+}

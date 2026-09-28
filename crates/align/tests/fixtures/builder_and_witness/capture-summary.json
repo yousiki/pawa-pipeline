@@ -1,0 +1,237 @@
+{
+  "experiment_id": "server",
+  "run_id": "script-corpus-v2",
+  "episode_id": "corpus-const-builder_and_witness",
+  "player_id": "player",
+  "encoding": "replay_mod",
+  "matrix": {
+    "minecraft": "1.21.8",
+    "loader": {
+      "family": "fabric",
+      "version": "0.19.3"
+    },
+    "fabric_api": "0.136.1+1.21.8",
+    "fabric_kotlin": "1.13.12+kotlin.2.4.0",
+    "server_replay": "3.0.1+1.21.8"
+  },
+  "world": {
+    "level_seed": "2026",
+    "level_type": "minecraft:normal",
+    "generator_settings": null,
+    "level_name": "world",
+    "reset_world": true
+  },
+  "server_ready": true,
+  "bot_ready": true,
+  "go_sent": true,
+  "bot_done": true,
+  "recording_stopped": true,
+  "scenery": {
+    "name": "build_arena",
+    "seed": 7003,
+    "origin": [
+      -64,
+      87,
+      -118
+    ],
+    "command_count": 12,
+    "commands": [
+      "forceload add -84 -138 -44 -98",
+      "fill -84 97 -138 -44 97 -98 minecraft:smooth_stone replace",
+      "fill -84 87 -138 -44 97 -98 minecraft:air replace",
+      "fill -84 86 -138 -44 86 -98 minecraft:smooth_stone replace",
+      "setblock -84 86 -138 minecraft:glowstone replace",
+      "setblock -64 86 -138 minecraft:glowstone replace",
+      "setblock -44 86 -138 minecraft:glowstone replace",
+      "setblock -44 86 -118 minecraft:glowstone replace",
+      "setblock -44 86 -98 minecraft:glowstone replace",
+      "setblock -64 86 -98 minecraft:glowstone replace",
+      "setblock -84 86 -98 minecraft:glowstone replace",
+      "setblock -84 86 -118 minecraft:glowstone replace"
+    ],
+    "replies": [
+      "Marked 12 chunks in minecraft:overworld from [-6, -9] to [-3, -7] to be force loaded",
+      "Successfully filled 1681 block(s)",
+      "Successfully filled 5340 block(s)",
+      "Successfully filled 1681 block(s)",
+      "Changed the block at -84, 86, -138",
+      "Changed the block at -64, 86, -138",
+      "Changed the block at -44, 86, -138",
+      "Changed the block at -44, 86, -118",
+      "Changed the block at -44, 86, -98",
+      "Changed the block at -64, 86, -98",
+      "Changed the block at -84, 86, -98",
+      "Changed the block at -84, 86, -118"
+    ],
+    "verified": true,
+    "final_relocation": {
+      "commands": [
+        "tp CapBot0 -65.5 87 -117.5",
+        "tp CapBot1 -62.5 87 -117.5"
+      ],
+      "replies": [
+        "Teleported CapBot0 to -65.500000, 87.000000, -117.500000",
+        "Teleported CapBot1 to -62.500000, 87.000000, -117.500000"
+      ],
+      "expected_positions": [
+        [
+          -65.5,
+          87.0,
+          -117.5
+        ],
+        [
+          -62.5,
+          87.0,
+          -117.5
+        ]
+      ],
+      "actual_positions": [
+        [
+          -65.5,
+          87.0,
+          -117.5
+        ],
+        [
+          -62.5,
+          87.0,
+          -117.5
+        ]
+      ],
+      "verified_players": [
+        "CapBot0",
+        "CapBot1"
+      ],
+      "verified": true
+    }
+  },
+  "failures": [],
+  "started_at": 1786598276,
+  "usernames": [
+    "CapBot0",
+    "CapBot1"
+  ],
+  "expected_bot_count": 2,
+  "night_vision": [
+    {
+      "command": "effect give CapBot0 minecraft:night_vision 1000000 0 true",
+      "reply": "Applied effect Night Vision to CapBot0"
+    },
+    {
+      "command": "effect give CapBot1 minecraft:night_vision 1000000 0 true",
+      "reply": "Applied effect Night Vision to CapBot1"
+    }
+  ],
+  "spawn_relocation": {
+    "status": "located_biome",
+    "biome": "minecraft:plains",
+    "distance": 115.0,
+    "center": {
+      "x": -64.0,
+      "z": -96.0
+    },
+    "attempts": [
+      {
+        "biome": "minecraft:plains",
+        "reply": "The nearest minecraft:plains is at [-64, 123, -96] (115 blocks away)"
+      }
+    ],
+    "spread_command": "spreadplayers -64.0 -96.0 8.0 32.0 false @a",
+    "spread_reply": "Spread 2 entity/entities around -64.0, -96.0 with an average distance of 35.62 block(s) apart",
+    "wet_before": [],
+    "wet_after": [],
+    "tp_commands": [],
+    "scenery_final_relocation": {
+      "commands": [
+        "tp CapBot0 -65.5 87 -117.5",
+        "tp CapBot1 -62.5 87 -117.5"
+      ],
+      "replies": [
+        "Teleported CapBot0 to -65.500000, 87.000000, -117.500000",
+        "Teleported CapBot1 to -62.500000, 87.000000, -117.500000"
+      ],
+      "expected_positions": [
+        [
+          -65.5,
+          87.0,
+          -117.5
+        ],
+        [
+          -62.5,
+          87.0,
+          -117.5
+        ]
+      ],
+      "actual_positions": [
+        [
+          -65.5,
+          87.0,
+          -117.5
+        ],
+        [
+          -62.5,
+          87.0,
+          -117.5
+        ]
+      ],
+      "verified_players": [
+        "CapBot0",
+        "CapBot1"
+      ],
+      "verified": true
+    }
+  },
+  "spread_command": "spreadplayers -64.0 -96.0 8.0 32.0 false @a",
+  "spread_reply": "Spread 2 entity/entities around -64.0, -96.0 with an average distance of 35.62 block(s) apart",
+  "spawn_quality": {
+    "wet_players": [],
+    "degenerate": false
+  },
+  "anchor": {
+    "x": -64.0,
+    "z": -118.0
+  },
+  "start_command": "replay start players @a",
+  "recording_start_gametime": 263,
+  "recording_stop_gametime": 3367,
+  "recording_stop_gametime_by_player": {
+    "CapBot0": 3367,
+    "CapBot1": 3367
+  },
+  "recent_log_tail": "[13:18:22] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:22] [Server thread/INFO]: [Rcon: Teleported CapBot0 to -65.500000, 87.000000, -117.500000]\n[13:18:22] [RCON Client /127.0.0.1 #39/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:18:22] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:22] [Server thread/INFO]: [Rcon: Teleported CapBot1 to -62.500000, 87.000000, -117.500000]\n[13:18:22] [RCON Client /127.0.0.1 #40/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:18:23] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:23] [RCON Client /127.0.0.1 #41/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:18:23] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:23] [RCON Client /127.0.0.1 #42/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:18:23] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:27] [Server thread/INFO]: Starting replay for CapBot0\n[13:18:27] [Server thread/INFO]: Starting replay for CapBot1\n[13:18:27] [Server thread/INFO]: [Rcon: Successfully started 2 recordings]\n[13:18:27] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4186ms or 83 ticks behind\n[13:18:27] [RCON Client /127.0.0.1 #43/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:18:27] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:18:27] [RCON Client /127.0.0.1 #44/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:02] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:21:02] [RCON Client /127.0.0.1 #45/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:02] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:21:02] [Server thread/INFO]: [Rcon: Successfully stopped 1 recordings]\n[13:21:02] [RCON Client /127.0.0.1 #46/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:02] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:21:02] [Server thread/INFO]: Starting to save replay CapBot0, please do not stop the server!\n[13:21:02] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:21:02] [RCON Client /127.0.0.1 #47/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:02] [Server thread/INFO]: [Rcon: Successfully stopped 1 recordings]\n[13:21:02] [RCON Client /127.0.0.1 #48/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:02] [RCON Listener #1/INFO]: Thread RCON Client /127.0.0.1 started\n[13:21:02] [Server thread/INFO]: Starting to save replay CapBot1, please do not stop the server!\n[13:21:02] [RCON Client /127.0.0.1 #49/INFO]: Thread RCON Client /127.0.0.1 shutting down\n[13:21:03] [Server thread/INFO]: CapBot1 lost connection: Disconnected\n[13:21:03] [Server thread/INFO]: CapBot1 left the game\n[13:21:03] [Server thread/INFO]: CapBot0 lost connection: Disconnected\n[13:21:03] [Server thread/INFO]: CapBot0 left the game\n[13:21:03] [Server thread/INFO]: Successfully saved replay CapBot1 to ./recordings/players/c5620d1b-9949-3151-8745-1fea439ec949/2026-08-13--13-18-27.mcpr, compressed to 4.7 MiB\n[13:21:03] [Server thread/INFO]: Successfully closed replay CapBot1\n[13:21:03] [Server thread/INFO]: Successfully saved replay CapBot0 to ./recordings/players/77027fc6-289b-387b-b291-94d40a5b9569/2026-08-13--13-18-23.mcpr, compressed to 6.1 MiB\n[13:21:03] [Server thread/INFO]: Successfully closed replay CapBot0",
+  "server_exit_code": 0,
+  "artifacts": [
+    {
+      "artifact_id": "corpus-const-builder_and_witness-p00-replay_mod",
+      "kind": "server_replay",
+      "format": "replaymod_mcpr",
+      "player": "CapBot0",
+      "path": "p00.mcpr",
+      "sha256": "be944047102040d4519e25da4d7e43a7e772d6b177d15bfbc7a9c61168a2b229",
+      "tick_range": {
+        "recording_start_tick": 263,
+        "dataset_start_tick": 263,
+        "dataset_stop_tick": 3367,
+        "recording_stop_tick": 3367
+      },
+      "status": "complete",
+      "byte_size": 6402241
+    },
+    {
+      "artifact_id": "corpus-const-builder_and_witness-p01-replay_mod",
+      "kind": "server_replay",
+      "format": "replaymod_mcpr",
+      "player": "CapBot1",
+      "path": "p01.mcpr",
+      "sha256": "bde49cfdb121327f28ba9a27150a5daaf14e86fd006eac3e040dfc0d2496d908",
+      "tick_range": {
+        "recording_start_tick": 263,
+        "dataset_start_tick": 263,
+        "dataset_stop_tick": 3367,
+        "recording_stop_tick": 3367
+      },
+      "status": "complete",
+      "byte_size": 4920473
+    }
+  ],
+  "finished_at": 1786598471
+}

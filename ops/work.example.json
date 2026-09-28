@@ -1,0 +1,29 @@
+{
+  "run_id": "example",
+  "capture_cpus": 16,
+  "episodes": [
+    {
+      "episode_id": "example-001",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "landmark_tour",
+        "seed": 2026,
+        "scenery": "none"
+      }
+    }
+  ],
+  "render": {
+    "projections": [
+      {"name": "default", "method": "DEFAULT", "width": 640, "height": 360},
+      {"name": "equirect", "method": "EQUIRECTANGULAR", "width": 1024, "height": 512}
+    ],
+    "encoder": "libx264",
+    "preset": "veryfast",
+    "crf": 20,
+    "fps": 20,
+    "threads_per_render": 8,
+    "timeout_sec": {"default": 6000, "equirect": 21600}
+  }
+}

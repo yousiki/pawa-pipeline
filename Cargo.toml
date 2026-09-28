@@ -1,0 +1,14 @@
+[workspace]
+members = [
+    "crates/align",
+    "crates/capture",
+    "crates/pawa",
+    "crates/hud",
+    "crates/players",
+    "crates/render",
+    "crates/schema",
+]
+resolver = "2"
+
+[profile.release]
+opt-level = 2

@@ -1,0 +1,8 @@
+PAWA Pipeline
+Copyright 2026 yousiki (Siqi Yang)
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product builds on and orchestrates third-party software including Minecraft,
+Fabric, ServerReplay, ReplayMod, Azalea, HeadlessMC, HyperQueue, VirtualGL, FFmpeg,
+Mesa, and others. Each dependency remains subject to its own license.

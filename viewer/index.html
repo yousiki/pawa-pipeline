@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAWA dataset viewer</title>
+<style>
+:root {
+  --bg: #111; --panel: #1b1b1b; --border: #333; --text: #ddd; --muted: #999;
+  --link: #8ab4ff; --accent: #60a5fa; --warn: #f59e0b;
+  --pass: #7fd79a; --pass-bg: #14421f; --fail: #ff9c9c; --fail-bg: #4a1f1f;
+}
+* { box-sizing: border-box; }
+body { font: 14px/1.5 system-ui, sans-serif; margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--link); text-decoration: none; }
+button, select, input {
+  font: inherit; background: #242424; color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px 10px;
+}
+button { cursor: pointer; } button:hover { background: #2e3a52; }
+button.primary { background: #1d3a6b; border-color: #2d5aa0; }
+button.primary:hover { background: #26497f; }
+button.active { background: #2d5aa0; }
+header {
+  position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: .8em;
+  background: var(--panel); border-bottom: 1px solid var(--border); padding: .5em 1em;
+}
+header .brand { font-weight: 700; color: var(--warn); }
+header .crumb { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+header .spacer { flex: 1; }
+#banner { background: var(--fail-bg); color: var(--fail); padding: .4em 1em; white-space: pre-wrap; }
+#banner:empty { display: none; }
+main { padding: 1em; }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1em; max-width: 640px; margin: 0 auto; }
+.card label { display: block; margin: .8em 0 .2em; color: var(--muted); font-size: 13px; }
+.card input { width: 100%; }
+.tag { font-size: 11px; background: #2c2c2c; border-radius: 4px; padding: 2px 8px; vertical-align: middle; white-space: nowrap; }
+.tag.pass { background: var(--pass-bg); color: var(--pass); }
+.tag.fail { background: var(--fail-bg); color: var(--fail); }
+.tag.keep { background: #14421f; color: var(--pass); }
+.tag.drop { background: var(--fail-bg); color: var(--fail); }
+.tag.seen { color: var(--muted); }
+/* ---- index ---- */
+.toolbar { display: flex; flex-wrap: wrap; gap: .5em; align-items: center; margin-bottom: .8em; }
+.toolbar .count { color: var(--muted); font-size: 13px; }
+.eplist { display: flex; flex-direction: column; }
+.eprow {
+  display: flex; gap: .7em; align-items: center; padding: .35em .6em; border-bottom: 1px solid #222;
+  border-radius: 6px; cursor: pointer;
+}
+.eprow:hover { background: #1d2635; }
+.eprow .mono { font-family: ui-monospace, monospace; font-size: 12.5px; }
+.eprow .scen { color: var(--warn); min-width: 16em; }
+.eprow .np { min-width: 3.2em; text-align: right; color: var(--link); }
+.eprow .when { color: var(--muted); font-size: 12px; min-width: 9em; }
+.eprow .flex { flex: 1; }
+.branchlist li { margin: .5em 0; list-style: none; }
+.branchlist a { display: inline-block; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: .5em 1.2em; font-weight: 600; }
+/* ---- episode ---- */
+.ep-head { display: flex; flex-wrap: wrap; gap: .6em; align-items: center; margin-bottom: .6em; }
+.ep-head h2 { font-size: 15px; margin: 0; font-family: ui-monospace, monospace; }
+.controls {
+  position: sticky; top: 2.6em; z-index: 9; display: flex; flex-wrap: wrap; gap: .5em; align-items: center;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: .5em .8em; margin-bottom: .8em;
+}
+.controls .time { font-family: ui-monospace, monospace; font-size: 13px; color: var(--muted); min-width: 15em; }
+#seek { flex: 1; min-width: 160px; accent-color: var(--accent); padding: 0; border: 0; background: none; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 10px; }
+.tile { position: relative; background: #000; border-radius: 8px; overflow: hidden; }
+.tile video { display: block; width: 100%; }
+.tile .vwrap { position: relative; }
+.tile .vwrap + .vwrap { border-top: 1px solid #222; }
+.tile .povlabel {
+  position: absolute; top: 4px; left: 6px; font-size: 12px; font-weight: 600; color: #fff;
+  background: rgba(0,0,0,.55); border-radius: 4px; padding: 1px 7px; z-index: 2;
+}
+.tile .hudnote {
+  position: absolute; top: 4px; right: 6px; font-size: 11px; color: var(--muted);
+  background: rgba(0,0,0,.55); border-radius: 4px; padding: 1px 7px; z-index: 2;
+}
+.tile .vwrap canvas.hud { position: absolute; left: 4px; bottom: 4px; width: 60%; pointer-events: none; }
+.tile .dead { padding: 2em 1em; color: var(--muted); text-align: center; }
+details.qc { margin: .4em 0 .8em; color: #caa; font-size: 13px; }
+details.qc pre { background: #181818; border: 1px solid #2a2a2a; border-radius: 6px; padding: .6em; overflow-x: auto; font-size: 11.5px; }
+.kbd-help { color: var(--muted); font-size: 12px; margin-top: 1em; }
+kbd { background: #2c2c2c; border: 1px solid #444; border-radius: 4px; padding: 0 5px; font-size: 11px; }
+.loading { color: var(--muted); padding: 2em; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#/">PAWA viewer</a>
+  <span class="crumb" id="crumb"></span>
+  <span class="spacer"></span>
+  <button id="cfgBtn" onclick="location.hash='#/'">Settings / branches</button>
+</header>
+<div id="banner"></div>
+<main id="view"></main>
+<script>
+"use strict";
+/* Dataset viewer: a static SPA that streams straight from a Hugging Face dataset repo
+ * (the token lives only in localStorage and is only sent to huggingface.co).
+ * Data contract: frames.jsonl line i = video frame i, and frame 0 of every POV is the same
+ * world tick, so synchronized playback across POVs = aligning currentTime. fps comes from
+ * episode.json (currently 20).
+ * URL params: ?repo=owner/name&revision=branch (both optional; the repo can also be set on the home page). */
+
+const LS = localStorage;
+const params = new URLSearchParams(location.search);
+const cfg = {
+  repo: params.get("repo") || LS.getItem("hf_repo") || "",
+};
+if (params.get("repo")) LS.setItem("hf_repo", cfg.repo);
+if (params.get("revision") && (!location.hash || location.hash === "#/")) {
+  history.replaceState(null, "", `#/b/${encodeURIComponent(params.get("revision"))}`);
+}
+const mem = { branches: null, episodes: {}, urls: new Map() };
+const $ = (id) => document.getElementById(id);
+const view = $("view");
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+function banner(msg) { $("banner").textContent = msg || ""; }
+// Read the token from localStorage on every call: hash routing never reloads the page, so a snapshot would go stale.
+const authHeaders = () => {
+  const t = LS.getItem("hf_token") || "";
+  return t ? { Authorization: "Bearer " + t } : {};
+};
+
+async function hfApi(path) {
+  const r = await fetch("https://huggingface.co/api/" + path, { headers: authHeaders() });
+  if (!r.ok) throw new Error(`HF API ${path} → ${r.status}${r.status === 401 || r.status === 403 ? " (invalid token or no access?)" : ""}`);
+  return { json: await r.json(), link: r.headers.get("Link") };
+}
+const resolveUrl = (branch, path) => `https://huggingface.co/datasets/${cfg.repo}/resolve/${encodeURIComponent(branch)}/${path}`;
+// HF occasionally returns transient 401/5xx; retry once before failing.
+async function fetchRetry(url, opts) {
+  let r = await fetch(url, opts);
+  if (!r.ok && r.status !== 404) {
+    await new Promise((res) => setTimeout(res, 800));
+    r = await fetch(url, opts);
+  }
+  return r;
+}
+async function fetchRepoJson(branch, path) {
+  const r = await fetchRetry(resolveUrl(branch, path), { headers: authHeaders() });
+  if (!r.ok) throw new Error(`${path} → ${r.status}`);
+  return r.json();
+}
+// <video> cannot send an Authorization header: HEAD once and use the signed CDN URL behind the 302 (no auth needed, supports Range).
+async function signedUrl(branch, path) {
+  const key = branch + "/" + path;
+  if (mem.urls.has(key)) return mem.urls.get(key);
+  const r = await fetchRetry(resolveUrl(branch, path), { method: "HEAD", headers: authHeaders() });
+  if (!r.ok) throw new Error(`resolve ${path} → ${r.status}`);
+  mem.urls.set(key, r.url);
+  return r.url;
+}
+
+// ---------- episode index ----------
+const EP_RE = /^(\d{8}T\d{6}Z)-(.+)-(\d+)p-([0-9a-f]{8})$/;
+function parseEp(dir) {
+  const m = dir.match(EP_RE);
+  if (!m) return { dir, ts: "", scenario: dir, n: 0 };
+  return { dir, ts: m[1], scenario: m[2], n: +m[3] };
+}
+async function listEpisodes(branch) {
+  if (mem.episodes[branch]) return mem.episodes[branch];
+  let url = `datasets/${cfg.repo}/tree/${encodeURIComponent(branch)}/dataset?limit=1000`;
+  const eps = [];
+  while (url) {
+    let res;
+    try { res = await hfApi(url); }
+    catch (e) { if (String(e).includes("404")) break; throw e; }
+    for (const it of res.json) if (it.type === "directory") eps.push(parseEp(it.path.split("/").pop()));
+    const next = res.link && res.link.match(/<https:\/\/huggingface\.co\/api\/([^>]+)>;\s*rel="next"/);
+    url = next ? next[1] : null;
+  }
+  eps.sort((a, b) => a.dir.localeCompare(b.dir));
+  mem.episodes[branch] = eps;
+  return eps;
+}
+
+// ---------- local marks (localStorage, no backend) ----------
+const markKey = (branch, ep) => `mark:${cfg.repo}:${branch}:${ep}`;
+const seenKey = (branch, ep) => `seen:${cfg.repo}:${branch}:${ep}`;
+const qcKey = (branch, ep) => `qc:${cfg.repo}:${branch}:${ep}`;
+const getMark = (b, e) => LS.getItem(markKey(b, e)) || "";
+function setMark(b, e, v) { v ? LS.setItem(markKey(b, e), v) : LS.removeItem(markKey(b, e)); }
+function qcCached(b, e) { try { return JSON.parse(LS.getItem(qcKey(b, e))); } catch { return null; } }
+
+// ---------- routing ----------
+let teardown = null; // cleanup for the current view (stops rAF / interval / fetch)
+async function route() {
+  if (teardown) { teardown(); teardown = null; }
+  banner("");
+  document.onkeydown = null;
+  const h = decodeURIComponent(location.hash || "#/");
+  const mEp = h.match(/^#\/b\/([^/]+)\/(.+)$/);
+  const mBr = h.match(/^#\/b\/([^/]+)$/);
+  try {
+    if (mEp) await viewEpisode(mEp[1], mEp[2]);
+    else if (mBr) await viewIndex(mBr[1]);
+    else viewHome();
+  } catch (e) {
+    console.error(e);
+    banner("Load failed: " + e.message);
+    view.innerHTML = "";
+  }
+}
+window.addEventListener("hashchange", route);
+
+// ---------- home: settings + branches ----------
+function viewHome() {
+  $("crumb").textContent = cfg.repo;
+  view.innerHTML = `
+  <div class="card">
+    <h3 style="margin-top:0">Data source</h3>
+    <label>HF dataset repo</label>
+    <input id="repoIn" value="${esc(cfg.repo)}" placeholder="owner/dataset-name" spellcheck="false">
+    <label>HF token (optional, for private repos; stored only in this browser's localStorage and sent only to huggingface.co)</label>
+    <input id="tokenIn" type="password" value="${esc(LS.getItem("hf_token") || "")}" placeholder="hf_..." spellcheck="false">
+    <div style="margin-top:1em"><button class="primary" id="saveBtn">Save and load branches</button></div>
+    <div id="branches" style="margin-top:1em"><ul class="branchlist" id="branchUl"></ul></div>
+    <p class="kbd-help">Each branch (revision) of the repo is one dataset version. Tip: link directly with <code>?repo=owner/name&amp;revision=branch</code>.</p>
+  </div>`;
+  $("saveBtn").onclick = async () => {
+    cfg.repo = $("repoIn").value.trim();
+    LS.setItem("hf_repo", cfg.repo);
+    LS.setItem("hf_token", $("tokenIn").value.trim());
+    mem.branches = null; mem.episodes = {}; mem.urls.clear();
+    await loadBranches();
+  };
+  if (cfg.repo) loadBranches().catch((e) => banner(String(e)));
+}
+async function loadBranches() {
+  if (!cfg.repo) { banner("Enter an HF dataset repo (owner/name) first."); return; }
+  $("branchUl").innerHTML = `<li class="loading">Loading branches…</li>`;
+  try {
+    const { json } = await hfApi(`datasets/${cfg.repo}/refs`);
+    mem.branches = json.branches.map((b) => b.name);
+    $("branchUl").innerHTML = mem.branches.map((b) =>
+      `<li><a href="#/b/${encodeURIComponent(b)}">${esc(b)}</a></li>`).join("") ||
+      `<li class="loading">No branches found</li>`;
+  } catch (e) { $("branchUl").innerHTML = ""; banner(String(e)); }
+}
+
+// ---------- index page ----------
+const filt = { q: "", scenario: "", n: "", verdict: "", mark: "", sort: "time-desc" };
+function applyFilter(eps, branch) {
+  let out = eps.filter((e) => {
+    if (filt.q && !e.dir.includes(filt.q)) return false;
+    if (filt.scenario && e.scenario !== filt.scenario) return false;
+    if (filt.n && e.n !== +filt.n) return false;
+    if (filt.mark) {
+      const m = getMark(branch, e.dir) || (LS.getItem(seenKey(branch, e.dir)) ? "seen" : "new");
+      if (filt.mark !== m) return false;
+    }
+    if (filt.verdict) {
+      const qc = qcCached(branch, e.dir);
+      if (!qc || qc.v !== filt.verdict) return false;
+    }
+    return true;
+  });
+  if (filt.sort === "time-asc") out.sort((a, b) => a.dir.localeCompare(b.dir));
+  else if (filt.sort === "time-desc") out.sort((a, b) => b.dir.localeCompare(a.dir));
+  else if (filt.sort === "scenario") out.sort((a, b) => a.scenario.localeCompare(b.scenario) || a.n - b.n || a.dir.localeCompare(b.dir));
+  else if (filt.sort === "n") out.sort((a, b) => a.n - b.n || a.scenario.localeCompare(b.scenario) || a.dir.localeCompare(b.dir));
+  return out;
+}
+
+async function viewIndex(branch) {
+  $("crumb").textContent = `${cfg.repo} @ ${branch}`;
+  view.innerHTML = `<div class="loading">Loading episode index…</div>`;
+  const eps = await listEpisodes(branch);
+  const scenarios = [...new Set(eps.map((e) => e.scenario))].sort();
+  const ns = [...new Set(eps.map((e) => e.n))].sort((a, b) => a - b);
+  view.innerHTML = `
+  <div class="toolbar">
+    <input id="fQ" placeholder="Search…" value="${esc(filt.q)}" style="width:11em">
+    <select id="fScen"><option value="">All scenarios</option>${scenarios.map((s) => `<option ${filt.scenario === s ? "selected" : ""}>${esc(s)}</option>`).join("")}</select>
+    <select id="fN"><option value="">All N</option>${ns.map((n) => `<option ${filt.n == n ? "selected" : ""} value="${n}">${n}p</option>`).join("")}</select>
+    <select id="fV"><option value="">QC: all</option><option ${filt.verdict === "pass" ? "selected" : ""} value="pass">pass</option><option ${filt.verdict === "fail" ? "selected" : ""} value="fail">fail</option></select>
+    <select id="fM"><option value="">Marks: all</option><option value="new">Unseen</option><option value="seen">Seen, unmarked</option><option value="keep">keep</option><option value="drop">drop</option></select>
+    <select id="fS">
+      <option value="time-desc" ${filt.sort === "time-desc" ? "selected" : ""}>Newest first</option>
+      <option value="time-asc" ${filt.sort === "time-asc" ? "selected" : ""}>Oldest first</option>
+      <option value="scenario" ${filt.sort === "scenario" ? "selected" : ""}>By scenario</option>
+      <option value="n" ${filt.sort === "n" ? "selected" : ""}>By N</option>
+    </select>
+    <span class="count" id="fCount"></span>
+    <span class="spacer" style="flex:1"></span>
+    <button id="exportBtn">Export marks</button>
+  </div>
+  <div class="eplist" id="eplist"></div>`;
+  $("fM").value = filt.mark;
+  const rerender = () => renderRows(branch, eps);
+  $("fQ").oninput = (e) => { filt.q = e.target.value.trim(); rerender(); };
+  $("fScen").onchange = (e) => { filt.scenario = e.target.value; rerender(); };
+  $("fN").onchange = (e) => { filt.n = e.target.value; rerender(); };
+  $("fV").onchange = (e) => { filt.verdict = e.target.value; rerender(); };
+  $("fM").onchange = (e) => { filt.mark = e.target.value; rerender(); };
+  $("fS").onchange = (e) => { filt.sort = e.target.value; rerender(); };
+  $("exportBtn").onclick = () => exportMarks(branch, eps);
+  renderRows(branch, eps);
+}
+
+let qcObserver = null;
+function renderRows(branch, eps) {
+  const list = applyFilter(eps, branch);
+  $("fCount").textContent = `${list.length} / ${eps.length} episodes`;
+  const fmtTs = (ts) => ts ? `${ts.slice(4, 6)}-${ts.slice(6, 8)} ${ts.slice(9, 11)}:${ts.slice(11, 13)}` : "";
+  $("eplist").innerHTML = list.map((e) => {
+    const mark = getMark(branch, e.dir);
+    const seen = LS.getItem(seenKey(branch, e.dir));
+    const qc = qcCached(branch, e.dir);
+    return `<div class="eprow" data-ep="${esc(e.dir)}">
+      <span class="scen">${esc(e.scenario)}</span>
+      <span class="np">${e.n}p</span>
+      <span class="when">${fmtTs(e.ts)}</span>
+      <span class="mono flex">${esc(e.dir)}</span>
+      <span class="qcslot">${qc ? qcBadge(qc) : `<span class="tag">qc …</span>`}</span>
+      ${mark ? `<span class="tag ${mark}">${mark}</span>` : seen ? `<span class="tag seen">seen</span>` : ""}
+    </div>`;
+  }).join("") || `<div class="loading">No matches</div>`;
+  for (const row of $("eplist").children) {
+    if (!row.dataset.ep) continue;
+    row.onclick = () => { location.hash = `#/b/${encodeURIComponent(branch)}/${row.dataset.ep}`; };
+  }
+  // Lazy-load QC badges: only fetch rows scrolled into view, with bounded concurrency; results go to localStorage (content is immutable).
+  if (qcObserver) qcObserver.disconnect();
+  const queue = []; let inflight = 0;
+  const pump = () => {
+    while (inflight < 6 && queue.length) {
+      const row = queue.shift();
+      const ep = row.dataset.ep;
+      if (qcCached(branch, ep)) continue;
+      inflight++;
+      fetchRepoJson(branch, `dataset/${ep}/qc.json`)
+        .then((qc) => {
+          const slim = { v: qc.verdict, f: (qc.failures || []).length };
+          LS.setItem(qcKey(branch, ep), JSON.stringify(slim));
+          const slot = row.querySelector(".qcslot");
+          if (slot) slot.innerHTML = qcBadge(slim);
+        })
+        .catch(() => {})
+        .finally(() => { inflight--; pump(); });
+    }
+  };
+  qcObserver = new IntersectionObserver((entries) => {
+    for (const en of entries) if (en.isIntersecting) { queue.push(en.target); qcObserver.unobserve(en.target); }
+    pump();
+  });
+  for (const row of $("eplist").children) if (row.dataset && row.dataset.ep && !qcCached(branch, row.dataset.ep)) qcObserver.observe(row);
+}
+const qcBadge = (qc) => `<span class="tag ${qc.v === "pass" ? "pass" : "fail"}">qc ${esc(qc.v)}${qc.f ? ` \u00b7${qc.f}` : ""}</span>`;
+
+function exportMarks(branch, eps) {
+  const out = { repo: cfg.repo, branch, keep: [], drop: [], seen: [] };
+  for (const e of eps) {
+    const m = getMark(branch, e.dir);
+    if (m === "keep") out.keep.push(e.dir);
+    else if (m === "drop") out.drop.push(e.dir);
+    else if (LS.getItem(seenKey(branch, e.dir))) out.seen.push(e.dir);
+  }
+  const text = JSON.stringify(out, null, 1);
+  navigator.clipboard.writeText(text).then(
+    () => banner(`Copied to clipboard: keep ${out.keep.length} / drop ${out.drop.length} / seen-unmarked ${out.seen.length}`),
+    () => { banner("Clipboard unavailable; see the console"); console.log(text); });
+}
+
+// ---------- HUD (canvas port of crates/hud/src/overlay.rs, 360x216 logical canvas) ----------
+const HUD = {
+  W: 360, H: 216, ACCENT: "#60a5fa", DEAD: "#6b7280", WARN: "#f59e0b",
+  PANEL: "rgba(7,10,18,.72)", KEY: "#1f2330", KEY_STROKE: "#5f6776", KEY_TEXT: "#dae2ec",
+  KEY_TEXT_ON: "#0a1018", MUTED: "#b0bac8", FONT: "system-ui, sans-serif",
+  DEFAULT_FULL_SCALE: 3.6,
+};
+function hudKeycap(c, x, y, w, h, label, on, accent) {
+  c.beginPath(); c.roundRect(x, y, w, h, Math.max(h / 6, 3));
+  c.fillStyle = on ? accent : HUD.KEY; c.globalAlpha = on ? 0.92 : 0.82; c.fill(); c.globalAlpha = 1;
+  c.strokeStyle = on ? "#fff" : HUD.KEY_STROKE; c.lineWidth = 1.5; c.stroke();
+  const size = Math.min(Math.max(h * 0.42, 8), 16);
+  c.fillStyle = on ? HUD.KEY_TEXT_ON : HUD.KEY_TEXT;
+  c.font = `bold ${size}px ${HUD.FONT}`; c.textAlign = "center";
+  c.fillText(label, x + w / 2, y + h / 2 + size * 0.35);
+}
+function hudText(c, x, y, size, bold, fill, align, s) {
+  c.fillStyle = fill; c.font = `${bold ? "bold " : ""}${size}px ${HUD.FONT}`; c.textAlign = align; c.fillText(s, x, y);
+}
+// row: a slim row (see loadFrames); row=null means no data (out of range / not loaded).
+function drawHud(canvas, row, fullScale) {
+  const c = canvas.getContext("2d");
+  const scale = canvas.width / HUD.W;
+  c.setTransform(scale, 0, 0, scale, 0, 0);
+  c.clearRect(0, 0, HUD.W, HUD.H);
+  const a = row && row.act;
+  const accent = a ? HUD.ACCENT : HUD.DEAD;
+  // panel background
+  c.beginPath(); c.roundRect(1, 1, HUD.W - 2, HUD.H - 2, 12);
+  c.fillStyle = HUD.PANEL; c.fill();
+  c.strokeStyle = accent; c.lineWidth = 2; c.globalAlpha = 0.85; c.stroke(); c.globalAlpha = 1;
+  const PAD = 12, KEY = 28, GAP = 4, COL2 = 114, BADGE_H = 26;
+  if (a) hudText(c, PAD, 19, 11, true, accent, "left", "ACTION");
+  else hudText(c, PAD, 19, 11, true, HUD.WARN, "left", "NO ACTION");
+  // WASD
+  const row2 = 28 + KEY + GAP;
+  hudKeycap(c, PAD + KEY + GAP, 28, KEY, KEY, "W", !!(a && a.f), accent);
+  hudKeycap(c, PAD, row2, KEY, KEY, "A", !!(a && a.l), accent);
+  hudKeycap(c, PAD + KEY + GAP, row2, KEY, KEY, "S", !!(a && a.b), accent);
+  hudKeycap(c, PAD + 2 * (KEY + GAP), row2, KEY, KEY, "D", !!(a && a.r), accent);
+  // badges + modifier keys
+  const badges = [["ATTACK", a && a.at], ["USE", a && a.us], ["MINE", a && a.mi], ["PLACE", a && a.pl]];
+  badges.forEach(([label, on], i) => hudKeycap(c, COL2 + i * 59, 28, 54, BADGE_H, label, !!on, accent));
+  let mx = COL2;
+  for (const [label, on, w] of [["SPACE", a && a.j, 62], ["SPRINT", a && a.sp, 60], ["SNEAK", a && a.sn, 56]]) {
+    hudKeycap(c, mx, row2, w, BADGE_H, label, !!on, accent); mx += w + 5;
+  }
+  // hotbar: the selected slot comes from inventory.quickBarSlot (the action's hotbar.N is a switch edge, not used for display)
+  const HB_Y = 96, HB = 16, HB_GAP = 3;
+  for (let i = 0; i < 9; i++) {
+    const sx = PAD + i * (HB + HB_GAP);
+    const on = row && row.slot === i;
+    c.beginPath(); c.roundRect(sx, HB_Y, HB, HB, 3);
+    c.fillStyle = on ? accent : HUD.KEY; c.globalAlpha = 0.8; c.fill(); c.globalAlpha = 1;
+    c.strokeStyle = on ? "#fff" : HUD.KEY_STROKE; c.lineWidth = 1; c.stroke();
+    hudText(c, sx + HB / 2, HB_Y + HB / 2 + 3, 8, true, on ? HUD.KEY_TEXT_ON : HUD.KEY_TEXT, "center", String(i + 1));
+  }
+  const held = row && row.held ? row.held.replace(/^minecraft:/, "").slice(0, 26) : "-";
+  hudText(c, PAD, 124, 10, false, HUD.MUTED, "left", `held: ${held}`);
+  // camera dial: deg = -rad*180/π (mineflayer -> notchian)
+  const dYaw = a ? -a.cam[0] * 180 / Math.PI : 0;
+  const dPitch = a ? -a.cam[1] * 180 / Math.PI : 0;
+  const CX = 298, CY = 152, R = 34, ring = R - 5;
+  c.strokeStyle = accent; c.lineWidth = 2; c.globalAlpha = 0.85;
+  c.beginPath(); c.arc(CX, CY, R, 0, 7); c.stroke(); c.globalAlpha = 1;
+  c.strokeStyle = HUD.MUTED; c.lineWidth = 1; c.globalAlpha = 0.35;
+  c.beginPath(); c.arc(CX, CY, ring, 0, 7); c.stroke(); c.globalAlpha = 0.5;
+  c.beginPath(); c.moveTo(CX - R + 6, CY); c.lineTo(CX + R - 6, CY); c.moveTo(CX, CY - R + 6); c.lineTo(CX, CY + R - 6); c.stroke();
+  c.globalAlpha = 1;
+  const gain = ring / Math.max(fullScale, 1e-6);
+  const dx = Math.max(-ring, Math.min(ring, dYaw * gain));
+  const dy = Math.max(-ring, Math.min(ring, dPitch * gain));
+  c.strokeStyle = accent; c.lineWidth = 3; c.lineCap = "round";
+  c.beginPath(); c.moveTo(CX, CY); c.lineTo(CX + dx, CY + dy); c.stroke();
+  c.beginPath(); c.arc(CX + dx, CY + dy, 3.5, 0, 7); c.fillStyle = accent; c.fill();
+  hudText(c, PAD, 146, 10, false, HUD.KEY_TEXT, "left", `cam dyaw ${dYaw >= 0 ? "+" : ""}${dYaw.toFixed(2)}°`);
+  hudText(c, PAD, 160, 10, false, HUD.KEY_TEXT, "left", `    dpitch ${dPitch >= 0 ? "+" : ""}${dPitch.toFixed(2)}°`);
+  hudText(c, PAD, 174, 9, false, HUD.MUTED, "left", `ring = ${fullScale.toFixed(2)}°/frame`);
+  let status = row ? `frame ${row.i} | world ${row.w}` : "frame – | world –";
+  if (row && row.x != null) status += ` | pos ${row.x.toFixed(1)},${row.y.toFixed(1)},${row.z.toFixed(1)}`;
+  hudText(c, PAD, 206, 10, false, HUD.MUTED, "left", status);
+}
+
+// Stream-parse frames.jsonl into slim rows (only the fields the HUD needs, ~2400 rows per POV)
+async function loadFrames(branch, path, onProgress, signal) {
+  const r = await fetch(resolveUrl(branch, path), { headers: authHeaders(), signal });
+  if (!r.ok) throw new Error(`${path} → ${r.status}`);
+  const total = +r.headers.get("Content-Length") || 0;
+  const reader = r.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "", got = 0;
+  const rows = [];
+  const push = (line) => {
+    if (!line.trim()) return;
+    const o = JSON.parse(line);
+    const a = o.action;
+    rows.push({
+      i: o.frame_count, w: o.worldAgeTicks,
+      x: o.x, y: o.y, z: o.z,
+      slot: o.inventory ? o.inventory.quickBarSlot : null,
+      held: o.held_item || null,
+      act: a ? {
+        f: a.forward, b: a.back, l: a.left, r: a.right, j: a.jump, sp: a.sprint, sn: a.sneak,
+        at: a.attack, us: a.use, mi: a.mine, pl: a.place_block, cam: a.camera,
+      } : null,
+    });
+  };
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    got += value.length;
+    buf += dec.decode(value, { stream: true });
+    const lines = buf.split("\n");
+    buf = lines.pop();
+    for (const line of lines) push(line);
+    if (onProgress && total) onProgress(got / total);
+  }
+  if (buf) push(buf);
+  // dial full scale = the largest per-frame camera turn in this POV (port of overlay.rs camera_full_scale)
+  let maxStep = 0;
+  for (const row of rows) if (row.act) {
+    maxStep = Math.max(maxStep, Math.abs(row.act.cam[0]), Math.abs(row.act.cam[1]));
+  }
+  const fullScale = maxStep * 180 / Math.PI > 1e-3 ? maxStep * 180 / Math.PI : HUD.DEFAULT_FULL_SCALE;
+  return { rows, fullScale };
+}
+
+// ---------- episode page ----------
+async function viewEpisode(branch, ep) {
+  $("crumb").textContent = `${branch} / ${ep}`;
+  LS.setItem(seenKey(branch, ep), "1");
+  view.innerHTML = `<div class="loading">Loading episode…</div>`;
+  const abort = new AbortController();
+  let raf = 0, driftTimer = 0;
+  teardown = () => { abort.abort(); cancelAnimationFrame(raf); clearInterval(driftTimer); };
+
+  const [meta, qc] = await Promise.all([
+    fetchRepoJson(branch, `dataset/${ep}/episode.json`),
+    fetchRepoJson(branch, `dataset/${ep}/qc.json`).catch(() => null),
+  ]);
+  const fps = meta.fps || 20;
+  const durS = meta.povs.reduce((m, p) => Math.max(m, ...Object.values(p.videos || {}).map((v) => v.duration_ms / 1000)), 0);
+  if (qc) LS.setItem(qcKey(branch, ep), JSON.stringify({ v: qc.verdict, f: (qc.failures || []).length }));
+
+  // prev/next order = the current filtered + sorted index
+  const eps = await listEpisodes(branch);
+  const order = applyFilter(eps, branch).map((e) => e.dir);
+  const seq = order.includes(ep) ? order : eps.map((e) => e.dir);
+  const at = seq.indexOf(ep);
+  const nav = (d) => {
+    const target = seq[at + d];
+    if (target) location.hash = `#/b/${encodeURIComponent(branch)}/${target}`;
+  };
+
+  const mark = getMark(branch, ep);
+  view.innerHTML = `
+  <div class="ep-head">
+    <a href="#/b/${encodeURIComponent(branch)}">← Index</a>
+    <button id="prevBtn" ${at <= 0 ? "disabled" : ""}>◀ Prev</button>
+    <button id="nextBtn" ${at < 0 || at >= seq.length - 1 ? "disabled" : ""}>Next ▶</button>
+    <h2>${esc(ep)}</h2>
+    <span class="tag">${esc(meta.scenario.name)}</span>
+    <span class="tag">${meta.povs.filter((p) => p.kind === "player").length} players</span>
+    <span class="tag">seed ${meta.scenario.seed}</span>
+    ${qc ? qcBadge({ v: qc.verdict, f: (qc.failures || []).length }) : ""}
+    <span class="count">${at >= 0 ? `${at + 1}/${seq.length}` : ""}</span>
+    <span class="spacer" style="flex:1"></span>
+    <button id="keepBtn" class="${mark === "keep" ? "active" : ""}">✓ keep</button>
+    <button id="dropBtn" class="${mark === "drop" ? "active" : ""}">✗ drop</button>
+  </div>
+  ${qc && (qc.failures || []).length ? `<details class="qc"><summary>${qc.failures.length}  QC flag(s) (failing episodes still ship; the verdict is a label for filtering)</summary><pre>${esc(qc.failures.join("\n"))}</pre></details>` : ""}
+  <div class="controls">
+    <button id="playBtn" class="primary" style="min-width:6em">▶ Play all</button>
+    <button id="replayBtn">⟲ Replay</button>
+    <button id="stepB">⏴ Frame</button>
+    <button id="stepF">Frame ⏵</button>
+    <select id="rate">
+      ${[0.25, 0.5, 1, 1.5, 2, 4].map((r) => `<option value="${r}" ${r === 1 ? "selected" : ""}>${r}×</option>`).join("")}
+    </select>
+    <label><input type="checkbox" id="hudTgl" checked> HUD</label>
+    <button id="povPrev">⏮</button>
+    <select id="perPage">${["1", "2", "4", "8", "all"].map((v) =>
+      `<option value="${v}" ${v === (LS.getItem("povPerPage") || "4") ? "selected" : ""}>${v === "all" ? "All POVs" : `${v} POV / page`}</option>`).join("")}</select>
+    <span class="count" id="povLbl"></span>
+    <button id="povNext">⏭</button>
+    <input type="range" id="seek" min="0" max="${durS}" step="0.05" value="0">
+    <span class="time" id="timeLbl"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="kbd-help">
+    <kbd>Space</kbd> play/pause \u00b7 <kbd>←</kbd><kbd>→</kbd> ±5s \u00b7 <kbd>,</kbd><kbd>.</kbd> step one frame \u00b7
+    <kbd>p</kbd>/<kbd>n</kbd> prev/next episode \u00b7 <kbd>[</kbd><kbd>]</kbd> POV page \u00b7 <kbd>k</kbd>/<kbd>d</kbd> keep/drop \u00b7
+    Known quirk: video lags the recorded actions by 0-4 frames (phase residual).
+  </p>`;
+
+  $("prevBtn").onclick = () => nav(-1);
+  $("nextBtn").onclick = () => nav(1);
+  const setMarkBtn = (v) => {
+    const cur = getMark(branch, ep);
+    setMark(branch, ep, cur === v ? "" : v);
+    $("keepBtn").classList.toggle("active", getMark(branch, ep) === "keep");
+    $("dropBtn").classList.toggle("active", getMark(branch, ep) === "drop");
+  };
+  $("keepBtn").onclick = () => setMarkBtn("keep");
+  $("dropBtn").onclick = () => setMarkBtn("drop");
+
+  // ---- tiles (POV paging: only one page of POV videos is mounted at a time, bounding bandwidth/decoding) ----
+  const grid = $("grid");
+  const tiles = []; // current page: {pov, videos, canvas, frames, fullScale, lastFrame, mediaTime}
+  const framesCache = new Map(); // pov name -> {rows, fullScale}; not refetched on page change
+  let povPage = 0;
+  const perPage = () => ($("perPage").value === "all" ? meta.povs.length : +$("perPage").value);
+  const pageCount = () => Math.max(1, Math.ceil(meta.povs.length / perPage()));
+  const note = (entry, text) => { const el = entry.tile.querySelector(".hudnote"); if (el) el.textContent = text; };
+
+  async function buildPovPage() {
+    const t = master() ? master().currentTime : 0;
+    const wasPlaying = playing;
+    pauseAll();
+    // unload the old page: clear src and load() to abort in-flight streams
+    for (const entry of tiles) for (const v of entry.videos) { v.removeAttribute("src"); v.load(); }
+    tiles.length = 0;
+    grid.innerHTML = "";
+    povPage = Math.min(povPage, pageCount() - 1);
+    $("povLbl").textContent = pageCount() > 1 ? `POV page ${povPage + 1}/${pageCount()}` : "";
+    $("povPrev").disabled = povPage <= 0;
+    $("povNext").disabled = povPage >= pageCount() - 1;
+    const slice = meta.povs.slice(povPage * perPage(), (povPage + 1) * perPage());
+    for (const pov of slice) {
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      if (pov.status !== "complete") {
+        tile.innerHTML = `<div class="dead">${esc(pov.name)} \u00b7 ${esc(pov.status)}</div>`;
+        grid.appendChild(tile);
+        continue;
+      }
+      // One column per POV: default on top (with HUD overlay), equirect panorama below.
+      const label = pov.username ? `${pov.name} \u00b7 ${pov.username}` : pov.name;
+      const hasEq = !!pov.videos.equirect;
+      tile.innerHTML = `
+        <span class="povlabel">${esc(label)}</span>
+        <span class="hudnote"></span>
+        <div class="vwrap"><video muted playsinline preload="auto" data-proj="default"></video></div>
+        ${hasEq ? `<div class="vwrap"><video muted playsinline preload="auto" data-proj="equirect"></video></div>` : ""}`;
+      const videos = [...tile.querySelectorAll("video")];
+      const entry = { pov, videos, canvas: null, frames: null, fullScale: HUD.DEFAULT_FULL_SCALE, lastFrame: -1, tile };
+      if (pov.kind === "player") {
+        const canvas = document.createElement("canvas");
+        canvas.className = "hud";
+        canvas.width = 720; canvas.height = 432;
+        tile.querySelector(".vwrap").appendChild(canvas);
+        entry.canvas = canvas;
+      }
+      grid.appendChild(tile);
+      tiles.push(entry);
+      // HUD timebase: during playback currentTime can be off by ±1 frame from the presented frame;
+      // requestVideoFrameCallback's mediaTime is the exact timestamp of the frame just presented.
+      if (entry.canvas && "requestVideoFrameCallback" in HTMLVideoElement.prototype) {
+        const onFrame = (_now, m) => {
+          if (!entry.videos[0].isConnected) return; // stop the chain once the page is unloaded
+          entry.mediaTime = m.mediaTime;
+          entry.videos[0].requestVideoFrameCallback(onFrame);
+        };
+        entry.videos[0].requestVideoFrameCallback(onFrame);
+      }
+    }
+    // video sources: fetch signed URLs in parallel (manifest keys default/equirect, file name from MediaInfo.path)
+    await Promise.all(tiles.flatMap((entry) =>
+      entry.videos.map(async (v) => {
+        const info = entry.pov.videos[v.dataset.proj];
+        if (!info) return;
+        try {
+          v.src = await signedUrl(branch, `dataset/${ep}/${info.path}`);
+        } catch (e) { note(entry, "video failed to load"); console.error(e); }
+      })));
+    if (t > 0) seekAll(t); // keep playback position across pages
+    if (wasPlaying) playAll();
+    // HUD data: fetch only what this page is missing; reuse the cache otherwise
+    for (const entry of tiles) {
+      if (!entry.canvas) continue;
+      const cached = framesCache.get(entry.pov.name);
+      if (cached) { entry.frames = cached.rows; entry.fullScale = cached.fullScale; continue; }
+      note(entry, "HUD loading 0%");
+      loadFrames(branch, `dataset/${ep}/${entry.pov.name}-frames.jsonl`,
+        (p) => note(entry, `HUD loading ${Math.round(p * 100)}%`), abort.signal)
+        .then((res) => {
+          framesCache.set(entry.pov.name, res);
+          entry.frames = res.rows; entry.fullScale = res.fullScale; entry.lastFrame = -1;
+          note(entry, "");
+        })
+        .catch((e) => { if (e.name !== "AbortError") { note(entry, "HUD data failed to load"); console.error(e); } });
+    }
+  }
+
+  // ---- synchronized controls ----
+  let playing = false;
+  const vids = () => tiles.flatMap((entry) => entry.videos).filter((v) => v.src);
+  const master = () => vids()[0];
+  function playAll() {
+    playing = true;
+    $("playBtn").textContent = "⏸ Pause all";
+    for (const v of vids()) v.play().catch(() => {});
+  }
+  function pauseAll() {
+    playing = false;
+    $("playBtn").textContent = "▶ Play all";
+    for (const v of vids()) v.pause();
+  }
+  function seekAll(t) {
+    t = Math.max(0, Math.min(durS, t));
+    for (const v of vids()) v.currentTime = t;
+  }
+  $("playBtn").onclick = () => (playing ? pauseAll() : playAll());
+  $("replayBtn").onclick = () => { seekAll(0); playAll(); };
+  $("stepB").onclick = () => { pauseAll(); seekAll((master()?.currentTime || 0) - 1 / fps); };
+  $("stepF").onclick = () => { pauseAll(); seekAll((master()?.currentTime || 0) + 1 / fps); };
+  $("rate").onchange = (e) => { for (const v of vids()) v.playbackRate = +e.target.value; };
+  $("hudTgl").onchange = (e) => {
+    for (const entry of tiles) if (entry.canvas) entry.canvas.style.display = e.target.checked ? "" : "none";
+  };
+  $("povPrev").onclick = () => { if (povPage > 0) { povPage--; buildPovPage(); } };
+  $("povNext").onclick = () => { if (povPage < pageCount() - 1) { povPage++; buildPovPage(); } };
+  $("perPage").onchange = () => { LS.setItem("povPerPage", $("perPage").value); povPage = 0; buildPovPage(); };
+  $("seek").oninput = (e) => seekAll(+e.target.value);
+  // Sync: video 0 is the master clock; others are pulled back if they drift >80ms. If any stream is
+  // buffering, everything pauses (group buffering) and resumes together: better to wait than show misaligned frames.
+  let buffering = false;
+  driftTimer = setInterval(() => {
+    const m = master();
+    if (!m || !playing) return;
+    for (const v of vids()) {
+      if (v !== m && Math.abs(v.currentTime - m.currentTime) > 0.08) v.currentTime = m.currentTime;
+    }
+    const stalled = vids().some((v) => v.readyState < 3 && v.currentTime < v.duration - 0.1);
+    if (stalled && !buffering) {
+      buffering = true;
+      $("playBtn").textContent = "⏳ Buffering…";
+      for (const v of vids()) v.pause();
+    } else if (!stalled && buffering) {
+      buffering = false;
+      $("playBtn").textContent = "⏸ Pause all";
+      for (const v of vids()) v.play().catch(() => {});
+    }
+  }, 500);
+
+  document.onkeydown = (e) => {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (e.code === "Space") { e.preventDefault(); playing ? pauseAll() : playAll(); }
+    else if (e.key === "ArrowLeft") seekAll((master()?.currentTime || 0) - 5);
+    else if (e.key === "ArrowRight") seekAll((master()?.currentTime || 0) + 5);
+    else if (e.key === ",") { pauseAll(); seekAll((master()?.currentTime || 0) - 1 / fps); }
+    else if (e.key === ".") { pauseAll(); seekAll((master()?.currentTime || 0) + 1 / fps); }
+    else if (e.key === "n") nav(1);
+    else if (e.key === "p") nav(-1);
+    else if (e.key === "[") $("povPrev").click();
+    else if (e.key === "]") $("povNext").click();
+    else if (e.key === "k") setMarkBtn("keep");
+    else if (e.key === "d") setMarkBtn("drop");
+  };
+
+  // ---- rAF: seek bar / time / HUD redraw ----
+  const timeLbl = $("timeLbl"), seek = $("seek");
+  function tick() {
+    const m = master();
+    if (m) {
+      const t = m.currentTime;
+      if (document.activeElement !== seek) seek.value = t;
+      timeLbl.textContent = `${t.toFixed(2)}s / ${durS.toFixed(1)}s \u00b7 frame ${Math.floor(t * fps)} / ${Math.round(durS * fps)}`;
+      for (const entry of tiles) {
+        if (!entry.canvas || !entry.frames) continue;
+        const t = entry.mediaTime != null ? entry.mediaTime : entry.videos[0].currentTime;
+        const f = Math.min(entry.frames.length - 1, Math.floor(t * fps + 1e-4));
+        if (f !== entry.lastFrame) {
+          entry.lastFrame = f;
+          drawHud(entry.canvas, entry.frames[f] || null, entry.fullScale);
+        }
+      }
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  raf = requestAnimationFrame(tick);
+
+  buildPovPage();
+}
+
+route();
+</script>
+</body>
+</html>

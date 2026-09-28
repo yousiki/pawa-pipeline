@@ -1,0 +1,39 @@
+[package]
+name = "players"
+version = "0.1.0"
+edition = "2024"
+description = "Azalea swarm capture bot for the PAWA pipeline"
+license = "Apache-2.0"
+publish = false
+
+# player PRODUCTION capture runtime: hosts B logical players in ONE process
+# (one tokio current_thread runtime + one Bevy ECS via azalea's SwarmBuilder), plays the
+# seeded cross-player scenario episode, and writes flat pNN capture artifacts.
+
+[[bin]]
+name = "players"
+path = "src/main.rs"
+
+[dependencies]
+# azalea is the project's Minecraft version anchor: this revision is 0.16.0+mc26.2
+# (protocol 776). It is a git pin because 26.2 support landed on main (#332) and has not
+# been published — crates.io tops out at 0.16.0+mc26.1, protocol 775. Cargo.lock records
+# the rev, so `--locked` stays reproducible. Move back to a crates.io `=` pin as soon as
+# upstream publishes a release carrying 26.2.
+azalea = { git = "https://github.com/azalea-rs/azalea", rev = "6249c295" }
+# Sub-crates from the same rev: the azalea facade does not re-export the protocol packet
+# enums (world-age via ClientboundSetTime) or the entity Physics component at its root.
+azalea-protocol = { git = "https://github.com/azalea-rs/azalea", rev = "6249c295" }
+azalea-entity = { git = "https://github.com/azalea-rs/azalea", rev = "6249c295" }
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+parking_lot = "0.12"
+anyhow = "1"
+pawa-schema = { path = "../schema" }
+
+# NOTE: azalea-auth pulls a chain of PRE-RELEASE crypto crates whose semver ranges admit
+# newer, mutually-incompatible pre-releases. The committed Cargo.lock pins the whole tree to
+# the versions this azalea rev was tested against; build with `--locked` (Dockerfile /
+# `just test`) so the resolution stays reproducible — no per-crate `=` pins needed here.
+

@@ -1,0 +1,595 @@
+{
+  "alignment_method": "metadata_join",
+  "authoritative_alignments": [
+    {
+      "action_id": "act-0-0000",
+      "action_type": "look",
+      "matched_frame_index": 123,
+      "replay_tick": 123,
+      "status": "exact",
+      "visible_event_id": "vis-script-start-0",
+      "world_age_tick": 304
+    },
+    {
+      "action_id": "act-0-0001",
+      "action_type": "move",
+      "matched_frame_index": 123,
+      "replay_tick": 123,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_to-0-p0-s0",
+      "world_age_tick": 304
+    },
+    {
+      "action_id": "act-0-0002",
+      "action_type": "move",
+      "matched_frame_index": 198,
+      "replay_tick": 198,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_to-0-p0-s0-3732",
+      "world_age_tick": 379
+    },
+    {
+      "action_id": "act-0-0003",
+      "action_type": "look",
+      "matched_frame_index": 198,
+      "replay_tick": 198,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-equip-0-p0-s2",
+      "world_age_tick": 379
+    },
+    {
+      "action_id": "act-0-0004",
+      "action_type": "look",
+      "matched_frame_index": 199,
+      "replay_tick": 199,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-equip-0-p0-s2-3769",
+      "world_age_tick": 380
+    },
+    {
+      "action_id": "act-0-0005",
+      "action_type": "place_block",
+      "matched_frame_index": 199,
+      "replay_tick": 199,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-place_blocks-0-p0-s4",
+      "world_age_tick": 380
+    },
+    {
+      "action_id": "act-0-0006",
+      "action_type": "place_block",
+      "matched_frame_index": 222,
+      "replay_tick": 222,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-0",
+      "world_age_tick": 403
+    },
+    {
+      "action_id": "act-0-0007",
+      "action_type": "place_block",
+      "matched_frame_index": 260,
+      "replay_tick": 260,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-1",
+      "world_age_tick": 441
+    },
+    {
+      "action_id": "act-0-0008",
+      "action_type": "place_block",
+      "matched_frame_index": 302,
+      "replay_tick": 302,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-2",
+      "world_age_tick": 483
+    },
+    {
+      "action_id": "act-0-0009",
+      "action_type": "place_block",
+      "matched_frame_index": 342,
+      "replay_tick": 342,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-3",
+      "world_age_tick": 523
+    },
+    {
+      "action_id": "act-0-0010",
+      "action_type": "place_block",
+      "matched_frame_index": 376,
+      "replay_tick": 376,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-4",
+      "world_age_tick": 557
+    },
+    {
+      "action_id": "act-0-0011",
+      "action_type": "place_block",
+      "matched_frame_index": 406,
+      "replay_tick": 406,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-5",
+      "world_age_tick": 587
+    },
+    {
+      "action_id": "act-0-0012",
+      "action_type": "place_block",
+      "matched_frame_index": 448,
+      "replay_tick": 448,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-6",
+      "world_age_tick": 629
+    },
+    {
+      "action_id": "act-0-0013",
+      "action_type": "place_block",
+      "matched_frame_index": 489,
+      "replay_tick": 489,
+      "status": "exact",
+      "visible_event_id": "vis-script-place-7",
+      "world_age_tick": 670
+    },
+    {
+      "action_id": "act-0-0014",
+      "action_type": "place_block",
+      "matched_frame_index": 512,
+      "replay_tick": 512,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-place_blocks-0-p0-s4-19463",
+      "world_age_tick": 693
+    },
+    {
+      "action_id": "act-0-0015",
+      "action_type": "look",
+      "matched_frame_index": 512,
+      "replay_tick": 512,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-look_around-0-p0-s6",
+      "world_age_tick": 693
+    },
+    {
+      "action_id": "act-0-0016",
+      "action_type": "look",
+      "matched_frame_index": 597,
+      "replay_tick": 597,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-look_around-0-p0-s6-23709",
+      "world_age_tick": 778
+    },
+    {
+      "action_id": "act-0-0017",
+      "action_type": "move",
+      "matched_frame_index": 597,
+      "replay_tick": 597,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_direction-0-p0-s8",
+      "world_age_tick": 778
+    },
+    {
+      "action_id": "act-0-0018",
+      "action_type": "move",
+      "matched_frame_index": 665,
+      "replay_tick": 665,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_direction-0-p0-s8-27081",
+      "world_age_tick": 846
+    },
+    {
+      "action_id": "act-0-0019",
+      "action_type": "move",
+      "matched_frame_index": 665,
+      "replay_tick": 665,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-pause-0-p0-s10",
+      "world_age_tick": 846
+    },
+    {
+      "action_id": "act-0-0020",
+      "action_type": "move",
+      "matched_frame_index": 705,
+      "replay_tick": 705,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-pause-0-p0-s10-29082",
+      "world_age_tick": 886
+    },
+    {
+      "action_id": "act-0-0021",
+      "action_type": "move",
+      "matched_frame_index": 705,
+      "replay_tick": 705,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-orbit_peer-0-p0-s12",
+      "world_age_tick": 886
+    },
+    {
+      "action_id": "act-0-0022",
+      "action_type": "move",
+      "matched_frame_index": 968,
+      "replay_tick": 968,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-orbit_peer-0-p0-s12-42255",
+      "world_age_tick": 1149
+    },
+    {
+      "action_id": "act-0-0023",
+      "action_type": "move",
+      "matched_frame_index": 968,
+      "replay_tick": 968,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_to-0-p0-s14",
+      "world_age_tick": 1149
+    },
+    {
+      "action_id": "act-0-0024",
+      "action_type": "move",
+      "matched_frame_index": 1045,
+      "replay_tick": 1045,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_to-0-p0-s14-46088",
+      "world_age_tick": 1226
+    },
+    {
+      "action_id": "act-0-0025",
+      "action_type": "look",
+      "matched_frame_index": 1045,
+      "replay_tick": 1045,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-look_around-0-p0-s16",
+      "world_age_tick": 1226
+    },
+    {
+      "action_id": "act-0-0026",
+      "action_type": "look",
+      "matched_frame_index": 1124,
+      "replay_tick": 1124,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-look_around-0-p0-s16-50028",
+      "world_age_tick": 1305
+    },
+    {
+      "action_id": "act-0-0027",
+      "action_type": "move",
+      "matched_frame_index": 1124,
+      "replay_tick": 1124,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_direction-0-p1-s8",
+      "world_age_tick": 1305
+    },
+    {
+      "action_id": "act-0-0028",
+      "action_type": "move",
+      "matched_frame_index": 1191,
+      "replay_tick": 1191,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_direction-0-p1-s8-53398",
+      "world_age_tick": 1372
+    },
+    {
+      "action_id": "act-0-0029",
+      "action_type": "move",
+      "matched_frame_index": 1191,
+      "replay_tick": 1191,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-pause-0-p1-s10",
+      "world_age_tick": 1372
+    },
+    {
+      "action_id": "act-0-0030",
+      "action_type": "move",
+      "matched_frame_index": 1231,
+      "replay_tick": 1231,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-pause-0-p1-s10-55399",
+      "world_age_tick": 1412
+    },
+    {
+      "action_id": "act-0-0031",
+      "action_type": "move",
+      "matched_frame_index": 1231,
+      "replay_tick": 1231,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-orbit_peer-0-p1-s12",
+      "world_age_tick": 1412
+    },
+    {
+      "action_id": "act-0-0032",
+      "action_type": "move",
+      "matched_frame_index": 1499,
+      "replay_tick": 1499,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-orbit_peer-0-p1-s12-68786",
+      "world_age_tick": 1680
+    },
+    {
+      "action_id": "act-0-0033",
+      "action_type": "move",
+      "matched_frame_index": 1499,
+      "replay_tick": 1499,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_to-0-p1-s14",
+      "world_age_tick": 1680
+    },
+    {
+      "action_id": "act-0-0034",
+      "action_type": "move",
+      "matched_frame_index": 1572,
+      "replay_tick": 1572,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_to-0-p1-s14-72418",
+      "world_age_tick": 1753
+    },
+    {
+      "action_id": "act-0-0035",
+      "action_type": "look",
+      "matched_frame_index": 1572,
+      "replay_tick": 1572,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-look_around-0-p1-s16",
+      "world_age_tick": 1753
+    },
+    {
+      "action_id": "act-0-0036",
+      "action_type": "look",
+      "matched_frame_index": 1651,
+      "replay_tick": 1651,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-look_around-0-p1-s16-76399",
+      "world_age_tick": 1832
+    },
+    {
+      "action_id": "act-0-0037",
+      "action_type": "move",
+      "matched_frame_index": 1651,
+      "replay_tick": 1651,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_direction-0-p2-s8",
+      "world_age_tick": 1832
+    },
+    {
+      "action_id": "act-0-0038",
+      "action_type": "move",
+      "matched_frame_index": 1708,
+      "replay_tick": 1708,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_direction-0-p2-s8-79209",
+      "world_age_tick": 1889
+    },
+    {
+      "action_id": "act-0-0039",
+      "action_type": "move",
+      "matched_frame_index": 1708,
+      "replay_tick": 1708,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-pause-0-p2-s10",
+      "world_age_tick": 1889
+    },
+    {
+      "action_id": "act-0-0040",
+      "action_type": "move",
+      "matched_frame_index": 1747,
+      "replay_tick": 1747,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-pause-0-p2-s10-81210",
+      "world_age_tick": 1928
+    },
+    {
+      "action_id": "act-0-0041",
+      "action_type": "move",
+      "matched_frame_index": 1747,
+      "replay_tick": 1747,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-orbit_peer-0-p2-s12",
+      "world_age_tick": 1928
+    },
+    {
+      "action_id": "act-0-0042",
+      "action_type": "move",
+      "matched_frame_index": 2022,
+      "replay_tick": 2022,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-orbit_peer-0-p2-s12-94925",
+      "world_age_tick": 2203
+    },
+    {
+      "action_id": "act-0-0043",
+      "action_type": "move",
+      "matched_frame_index": 2022,
+      "replay_tick": 2022,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_to-0-p2-s14",
+      "world_age_tick": 2203
+    },
+    {
+      "action_id": "act-0-0044",
+      "action_type": "move",
+      "matched_frame_index": 2165,
+      "replay_tick": 2165,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_to-0-p2-s14-102095",
+      "world_age_tick": 2346
+    },
+    {
+      "action_id": "act-0-0045",
+      "action_type": "look",
+      "matched_frame_index": 2165,
+      "replay_tick": 2165,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-look_around-0-p2-s16",
+      "world_age_tick": 2346
+    },
+    {
+      "action_id": "act-0-0046",
+      "action_type": "look",
+      "matched_frame_index": 2244,
+      "replay_tick": 2244,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-look_around-0-p2-s16-106026",
+      "world_age_tick": 2425
+    },
+    {
+      "action_id": "act-0-0047",
+      "action_type": "move",
+      "matched_frame_index": 2244,
+      "replay_tick": 2244,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_direction-0-p3-s8",
+      "world_age_tick": 2425
+    },
+    {
+      "action_id": "act-0-0048",
+      "action_type": "move",
+      "matched_frame_index": 2287,
+      "replay_tick": 2287,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_direction-0-p3-s8-108173",
+      "world_age_tick": 2468
+    },
+    {
+      "action_id": "act-0-0049",
+      "action_type": "move",
+      "matched_frame_index": 2287,
+      "replay_tick": 2287,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-pause-0-p3-s10",
+      "world_age_tick": 2468
+    },
+    {
+      "action_id": "act-0-0050",
+      "action_type": "move",
+      "matched_frame_index": 2327,
+      "replay_tick": 2327,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-pause-0-p3-s10-110174",
+      "world_age_tick": 2508
+    },
+    {
+      "action_id": "act-0-0051",
+      "action_type": "move",
+      "matched_frame_index": 2327,
+      "replay_tick": 2327,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-orbit_peer-0-p3-s12",
+      "world_age_tick": 2508
+    },
+    {
+      "action_id": "act-0-0052",
+      "action_type": "move",
+      "matched_frame_index": 2603,
+      "replay_tick": 2603,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-orbit_peer-0-p3-s12-123974",
+      "world_age_tick": 2784
+    },
+    {
+      "action_id": "act-0-0053",
+      "action_type": "move",
+      "matched_frame_index": 2603,
+      "replay_tick": 2603,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_to-0-p3-s14",
+      "world_age_tick": 2784
+    },
+    {
+      "action_id": "act-0-0054",
+      "action_type": "move",
+      "matched_frame_index": 2724,
+      "replay_tick": 2724,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_to-0-p3-s14-130032",
+      "world_age_tick": 2905
+    },
+    {
+      "action_id": "act-0-0055",
+      "action_type": "look",
+      "matched_frame_index": 2724,
+      "replay_tick": 2724,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-look_around-0-p3-s16",
+      "world_age_tick": 2905
+    },
+    {
+      "action_id": "act-0-0056",
+      "action_type": "look",
+      "matched_frame_index": 2804,
+      "replay_tick": 2804,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-look_around-0-p3-s16-134016",
+      "world_age_tick": 2985
+    },
+    {
+      "action_id": "act-0-0057",
+      "action_type": "move",
+      "matched_frame_index": 2804,
+      "replay_tick": 2804,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-walk_direction-0-p4-s8",
+      "world_age_tick": 2985
+    },
+    {
+      "action_id": "act-0-0058",
+      "action_type": "move",
+      "matched_frame_index": 2855,
+      "replay_tick": 2855,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-walk_direction-0-p4-s8-136571",
+      "world_age_tick": 3036
+    },
+    {
+      "action_id": "act-0-0059",
+      "action_type": "move",
+      "matched_frame_index": 2855,
+      "replay_tick": 2855,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-pause-0-p4-s10",
+      "world_age_tick": 3036
+    },
+    {
+      "action_id": "act-0-0060",
+      "action_type": "move",
+      "matched_frame_index": 2895,
+      "replay_tick": 2895,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-pause-0-p4-s10-138572",
+      "world_age_tick": 3076
+    },
+    {
+      "action_id": "act-0-0061",
+      "action_type": "move",
+      "matched_frame_index": 2895,
+      "replay_tick": 2895,
+      "status": "exact",
+      "visible_event_id": "vis-script-step-orbit_peer-0-p4-s12",
+      "world_age_tick": 3076
+    },
+    {
+      "action_id": "act-0-0062",
+      "action_type": "move",
+      "matched_frame_index": 3138,
+      "replay_tick": 3138,
+      "status": "exact",
+      "visible_event_id": "vis-script-done-orbit_peer-0-p4-s12-150765",
+      "world_age_tick": 3319
+    }
+  ],
+  "failures": [],
+  "metadata_join": {
+    "actions_matched": 63,
+    "actions_unavailable": 0,
+    "anchor_mode": "stop_anchored_frames",
+    "candidate_deltas": {
+      "go_world_age": 304,
+      "recording_start_gametime": 263,
+      "stop_anchored_frames": 181
+    },
+    "delta_world_age_minus_replay_tick": 181,
+    "dropped_trailing_actions": [],
+    "dropped_trailing_count": 0,
+    "fps": 20,
+    "go_world_age": 304,
+    "recording_start_gametime": 263,
+    "status": "applied",
+    "tick_rate_hz": 20,
+    "trailing_drop_window_ticks": 200,
+    "validation_tolerance_frames": 6
+  },
+  "status": "pass",
+  "uncertainties": []
+}

@@ -1,0 +1,6 @@
+# azalea 0.16 requires nightly for portable_simd and core_intrinsics.
+[toolchain]
+channel = "nightly-2026-08-12"
+profile = "minimal"
+# `just test` / `just fmt` run cargo fmt; the minimal profile omits rustfmt.
+components = ["rustfmt"]

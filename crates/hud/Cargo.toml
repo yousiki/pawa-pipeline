@@ -1,0 +1,26 @@
+[package]
+name = "pawa-hud"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+pawa-schema = { path = "../schema" }
+anyhow = "1"
+serde_json = "1"
+
+# `resvg` re-exports both `usvg` and `tiny-skia`, so neither is named here. Default features are off
+# to drop `raster-images` (gif/webp/jpeg decoders): the HUD is vector-only and never embeds a raster.
+# `text` + `system-fonts` stay — every label on the panel is text.
+resvg = { version = "0.48", default-features = false, features = [
+    "text",
+    "system-fonts",
+    "memmap-fonts",
+] }
+
+# `download_ffmpeg` (a default feature) is off deliberately: every target machine already has ffmpeg,
+# and a build that can silently fetch its own encoder is a build whose output depends on the network.
+# With it off the crate cannot download anything, and `FfmpegCommand::new_with_path("ffmpeg")` below
+# resolves through `PATH` like any other tool invocation.
+ffmpeg-sidecar = { version = "2.5", default-features = false }

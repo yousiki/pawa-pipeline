@@ -1,0 +1,226 @@
+{
+  "run_id": "many-player-acceptance",
+  "capture_cpus": 16,
+  "episodes": [
+    {
+      "episode_id": "mpa-cross_region_rendezvous-4p",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "cross_region_rendezvous",
+        "seed": 2100,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-cross_region_rendezvous-8p",
+      "player_count": 8,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "cross_region_rendezvous",
+        "seed": 2101,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-cross_region_rendezvous-16p",
+      "player_count": 16,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "cross_region_rendezvous",
+        "seed": 2102,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-rendezvous_after_edits-4p",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "rendezvous_after_edits",
+        "seed": 2110,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-rendezvous_after_edits-8p",
+      "player_count": 8,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "rendezvous_after_edits",
+        "seed": 2111,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-rendezvous_after_edits-16p",
+      "player_count": 16,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "rendezvous_after_edits",
+        "seed": 2112,
+        "scenery": "none",
+        "far_players": 1,
+        "far_distance": 96
+      },
+      "world": {
+        "seed": "4103"
+      }
+    },
+    {
+      "episode_id": "mpa-split_and_reunite-4p",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "split_and_reunite",
+        "seed": 2120,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-split_and_reunite-8p",
+      "player_count": 8,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "split_and_reunite",
+        "seed": 2121,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-split_and_reunite-16p",
+      "player_count": 16,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "split_and_reunite",
+        "seed": 2122,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-depart_and_revisit-4p",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "depart_and_revisit",
+        "seed": 2130,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-depart_and_revisit-8p",
+      "player_count": 8,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "depart_and_revisit",
+        "seed": 2131,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-depart_and_revisit-16p",
+      "player_count": 16,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "depart_and_revisit",
+        "seed": 2132,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-crowded_interaction-4p",
+      "player_count": 4,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "crowded_interaction",
+        "seed": 2140,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-crowded_interaction-8p",
+      "player_count": 8,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "crowded_interaction",
+        "seed": 2141,
+        "scenery": "none"
+      }
+    },
+    {
+      "episode_id": "mpa-crowded_interaction-16p",
+      "player_count": 16,
+      "shards": 1,
+      "episode_duration_sec": 300,
+      "scenario": {
+        "name": "crowded_interaction",
+        "seed": 2142,
+        "scenery": "none"
+      }
+    }
+  ],
+  "render": {
+    "projections": [
+      {
+        "name": "default",
+        "method": "DEFAULT",
+        "width": 640,
+        "height": 360
+      },
+      {
+        "name": "equirect",
+        "method": "EQUIRECTANGULAR",
+        "width": 1024,
+        "height": 512
+      }
+    ],
+    "encoder": "libx264",
+    "preset": "veryfast",
+    "crf": 20,
+    "fps": 20,
+    "threads_per_render": 8,
+    "timeout_sec": {
+      "default": 6000,
+      "equirect": 21600
+    }
+  }
+}

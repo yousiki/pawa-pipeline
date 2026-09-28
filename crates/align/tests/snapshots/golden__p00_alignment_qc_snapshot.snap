@@ -1,0 +1,20 @@
+---
+source: crates/align/tests/golden.rs
+assertion_line: 122
+expression: join.qc
+---
+{
+  "status": "applied",
+  "anchor": "stop_anchored_frames",
+  "delta_world_age_minus_replay_tick": 181,
+  "render_phase_ticks": 0,
+  "candidate_deltas": {
+    "go_world_age": 304,
+    "recording_start_world_age": 263,
+    "stop_anchored_frames": 181
+  },
+  "actions_matched": 63,
+  "actions_unavailable": 0,
+  "dropped_trailing_count": 0,
+  "validation_tolerance_frames": 6
+}

@@ -1,0 +1,357 @@
+{
+  "actions": [
+    {
+      "action_type": "look",
+      "server_tick": 0,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 0,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 51,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 51,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 121,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 121,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 429,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 429,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 646,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 646,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 648,
+      "type": "control.look"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 648,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 669,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 706,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 746,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 785,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 819,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 850,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 874,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 874,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 971,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 971,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1301,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1301,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1364,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1364,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1365,
+      "type": "control.look"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1365,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1388,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1427,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1471,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1511,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1545,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1575,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 1600,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1600,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 1697,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 1697,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2032,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2032,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2096,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2096,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2097,
+      "type": "control.look"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2097,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2120,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2157,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2199,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2238,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2272,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2303,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2326,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2326,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2422,
+      "type": "control.look"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2422,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2758,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2758,
+      "type": "control.move"
+    },
+    {
+      "action_type": "move",
+      "server_tick": 2822,
+      "type": "control.move"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2822,
+      "type": "control.look"
+    },
+    {
+      "action_type": "look",
+      "server_tick": 2823,
+      "type": "control.look"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2823,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2841,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2882,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2923,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 2964,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 3005,
+      "type": "world.place_block"
+    },
+    {
+      "action_type": "place_block",
+      "server_tick": 3028,
+      "type": "world.place_block"
+    }
+  ],
+  "azalea_version": "0.14.0+mc1.21.8",
+  "dense_frames": 3059,
+  "duration_met": true,
+  "end_tick_offset": 3059,
+  "episode_actual_duration_ms": 152909,
+  "episode_id": "corpus-const-builder_and_witness",
+  "episode_target_duration_ms": 150000,
+  "error_code": null,
+  "go_tick_base_client": 290,
+  "go_world_age": 304,
+  "last_frame_player_time_ms": 152907,
+  "last_frame_world_age_tick": 3363,
+  "place_tick_offset": 648,
+  "place_world_age_tick": 952,
+  "player_id": "player-1",
+  "runtime_family": "azalea",
+  "scenario": "script:construction/builder_and_witness",
+  "scenario_requested": "script:construction/builder_and_witness",
+  "scenario_seed": 7003,
+  "status": "ok",
+  "step_errors": [],
+  "username": "CapBot1",
+  "world_age_at_end": 3363
+}

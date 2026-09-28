@@ -1,0 +1,29 @@
+[package]
+name = "pawa-capture"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+description = "One capture episode: Fabric server, player shards, and the coordination dance between them"
+
+[dependencies]
+pawa-schema = { path = "../schema" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+tracing = "0.1"
+# Retry policy for the transient half of RCON (connect refused while the JVM is still binding, a
+# reply that never arrives). Blocking API, `std-blocking-sleep` is on by default.
+backon = "1"
+# `wait4` (peak RSS of a reaped child) and `kill(-pgid)` (the JVM's whole process group). std
+# exposes neither; it does expose `process_group`, which is the half that sets the group up.
+libc = "0.2"
+# Offline-mode UUIDs are Java's `nameUUIDFromBytes`: a type-3 (MD5) UUID. Not a security use.
+md-5 = "0.10"
+rand = "0.10"
+
+[dev-dependencies]
+tempfile = "3"
+
+[package.metadata.cargo-machete]
+ignored = ["md-5"]

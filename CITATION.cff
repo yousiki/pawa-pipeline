@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this pipeline or the PAWA dataset, please cite the paper."
+title: "PAWA Pipeline"
+url: "https://pawa.siki.moe"
+license: Apache-2.0
+authors:
+  - family-names: Yang
+    given-names: Siqi
+  - family-names: Wang
+    given-names: Yimu
+  - family-names: Cai
+    given-names: Ziqi
+  - family-names: Zhu
+    given-names: Chengxuan
+  - family-names: Weng
+    given-names: Shuchen
+  - family-names: Wu
+    given-names: Erwin
+  - family-names: Yu
+    given-names: Zhaofei
+  - family-names: Zhang
+    given-names: Kaipeng
+  - family-names: Shi
+    given-names: Boxin
+preferred-citation:
+  type: article
+  title: "PAWA: Panoramic Action-conditioned World Modeling for Multiple Agents"
+  journal: "arXiv preprint"
+  year: 2026
+  authors:
+    - family-names: Yang
+      given-names: Siqi
+    - family-names: Wang
+      given-names: Yimu
+    - family-names: Cai
+      given-names: Ziqi
+    - family-names: Zhu
+      given-names: Chengxuan
+    - family-names: Weng
+      given-names: Shuchen
+    - family-names: Wu
+      given-names: Erwin
+    - family-names: Yu
+      given-names: Zhaofei
+    - family-names: Zhang
+      given-names: Kaipeng
+    - family-names: Shi
+      given-names: Boxin
