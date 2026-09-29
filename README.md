@@ -7,7 +7,7 @@ and camera poses.
 
 - **Project page:** <https://pawa.siki.moe>
 - **Dataset:** <https://huggingface.co/datasets/YOUSIKI/pawa-dataset>
-- **Paper:** arXiv (coming soon)
+- **Paper:** coming soon
 
 ![Distributed data generation](docs/figures/pipeline.png)
 
@@ -137,12 +137,12 @@ separate stages on different machines over the same output tree; see
 ## Citation
 
 ```bibtex
-@article{yang2026pawa,
-  title   = {{PAWA}: Panoramic Action-conditioned World Modeling for Multiple Agents},
-  author  = {Yang, Siqi and Wang, Yimu and Cai, Ziqi and Zhu, Chengxuan and Weng, Shuchen and
-             Wu, Erwin and Yu, Zhaofei and Zhang, Kaipeng and Shi, Boxin},
-  journal = {arXiv preprint},
-  year    = {2026}
+@misc{yang2026pawa,
+  title        = {{PAWA}: Panoramic Action-conditioned World Modeling for Multiple Agents},
+  author       = {Yang, Siqi and Wang, Yimu and Cai, Ziqi and Zhu, Chengxuan and Weng, Shuchen and
+                  Wu, Erwin and Yu, Zhaofei and Zhang, Kaipeng and Shi, Boxin},
+  year         = {2026},
+  howpublished = {\url{https://pawa.siki.moe}}
 }
 ```
 

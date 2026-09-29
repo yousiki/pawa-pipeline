@@ -24,9 +24,9 @@ authors:
   - family-names: Shi
     given-names: Boxin
 preferred-citation:
-  type: article
+  type: generic
   title: "PAWA: Panoramic Action-conditioned World Modeling for Multiple Agents"
-  journal: "arXiv preprint"
+  url: "https://pawa.siki.moe"
   year: 2026
   authors:
     - family-names: Yang
