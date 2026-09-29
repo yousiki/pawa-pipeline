@@ -5,8 +5,9 @@ Agents**. It turns scripted multiplayer Minecraft sessions into synchronized per
 point-of-view (POV) videos, world-stabilized equirectangular panoramas, and frame-aligned actions
 and camera poses.
 
-[Project page](https://pawa.siki.moe) · Paper (arXiv, coming soon) ·
-[Dataset](https://huggingface.co/datasets/YOUSIKI/pawa-dataset)
+- **Project page:** <https://pawa.siki.moe>
+- **Dataset:** <https://huggingface.co/datasets/YOUSIKI/pawa-dataset>
+- **Paper:** arXiv (coming soon)
 
 ![Distributed data generation](docs/figures/pipeline.png)
 
