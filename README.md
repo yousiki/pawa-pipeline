@@ -148,7 +148,8 @@ separate stages on different machines over the same output tree; see
 
 ## License
 
-Code is released under Apache-2.0 (see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE)).
+Code is released under Apache-2.0 (see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE)). Third-party
+components and their licenses are listed in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
 
 Minecraft is a trademark of Mojang Synergies AB; this project is not affiliated with Mojang or
 Microsoft. The Docker build downloads Minecraft, Fabric, ReplayMod and other third-party
