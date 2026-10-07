@@ -27,7 +27,7 @@ Azalea pulls in a pre-release crypto dependency chain (`azalea-auth`) and `socks
 **License:** **GPL-3.0-or-later** (crate metadata and bundled `LICENSE`)  
 **Usage:** Non-optional dependency of `azalea-protocol` (feature `client`), used by Azalea for SOCKS5 proxy connections. PAWA code does not call it directly, but it is compiled and linked into the `players` binary.
 
-Distributing the source code under Apache-2.0 is unaffected, because the crate is not included in this repository. A distributed `players` binary (for example inside the published Docker image) links GPL-3.0 code; such a distribution must satisfy GPL-3.0 for the combined binary (source availability, license notice). Options: keep binaries/images undistributed, comply with GPL-3.0 for the binary, or remove the dependency through an upstream Azalea feature flag or a patch.
+Distributing the source code under Apache-2.0 is unaffected, because the crate is not included in this repository. A distributed `players` binary (for example inside a published Docker image) links GPL-3.0 code; such a distribution must satisfy GPL-3.0 for the combined binary (source availability, license notice). Options: keep binaries/images undistributed, comply with GPL-3.0 for the binary, or remove the dependency through an upstream Azalea feature flag or a patch.
 
 ---
 
@@ -174,7 +174,7 @@ Rust toolchain (MIT OR Apache-2.0), `just` (CC0-1.0), Debian base image (`debian
 | OpenJDK | GPL-2.0 with Classpath Exception |
 | Minecraft client, server and assets | **Proprietary (Minecraft EULA)**; downloaded at build time, present in the runtime image |
 
-This repository contains only original code, the HyperQueue patch and configuration; it contains no third-party source files, binaries or game assets. Copyleft and proprietary obligations arise only when **binaries or the runtime image** are distributed.
+This repository contains only original code, the HyperQueue patch and configuration; it contains no third-party source files, binaries or game assets. Copyleft and proprietary obligations arise only when **binaries or the runtime image** are distributed. The project does not publish either: CI builds the image only to check it, and users build it themselves with `just image`.
 
 ---
 

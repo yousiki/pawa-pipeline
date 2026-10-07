@@ -19,8 +19,9 @@ It can equally be hosted on GitHub Pages or any other static host; it is a singl
 ## Usage
 
 On the home page, enter the HF dataset repo (`owner/name`) and, for private repos, an HF token.
-The token is stored only in the browser's localStorage and is only ever sent to
-`huggingface.co`. Pick a branch (each branch/revision is one dataset version), then an episode.
+The token is kept only in the tab's sessionStorage (it is gone when the tab closes) and is only
+ever sent to `huggingface.co`. Pick a branch (each branch/revision is one dataset version), then an
+episode.
 
 You can also link straight to a repo and branch:
 
