@@ -309,6 +309,11 @@ fn server_properties(
         ("online-mode", "false".into()),
         ("rcon.password", rcon_password.to_string()),
         ("rcon.port", config.rcon_port.to_string()),
+        // Vanilla binds both the game port and RCON to `server-ip`, and to every interface when it
+        // is empty. Every client of this server runs on the same host (the shards connect to
+        // 127.0.0.1, RCON is driven from here), and with `online-mode=false` and the bots opped, a
+        // reachable game port would let anyone join under a bot's name.
+        ("server-ip", "127.0.0.1".into()),
         ("server-port", config.server_port.to_string()),
         (
             "simulation-distance",
@@ -387,6 +392,7 @@ mod tests {
         let text = server_properties(&config, &world, 64, "secret");
         assert!(text.starts_with("allow-flight=true\n"));
         assert!(text.contains("\nrcon.password=secret\n"));
+        assert!(text.contains("\nserver-ip=127.0.0.1\n"));
         assert!(text.contains("\nlevel-seed=2026\n"));
         // Absent generator settings must not emit an empty key: vanilla reads "" as a flat-world
         // preset in some level types.

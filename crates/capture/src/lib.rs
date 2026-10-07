@@ -60,9 +60,9 @@ pub struct CaptureConfig {
     /// every episode, so 8G is the value captures actually run on.
     pub server_xmx: String,
 
-    /// Minecraft server port the shards connect to.
+    /// Minecraft server port the shards connect to, bound to loopback (`server-ip=127.0.0.1`).
     pub server_port: u16,
-    /// RCON port, bound to loopback with a per-episode random password.
+    /// RCON port, bound to loopback like the game port, with a per-episode random password.
     pub rcon_port: u16,
     /// Socket timeout for one RCON command, seconds.
     pub rcon_timeout_sec: f64,
